@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: patient-service
+  h2:
+    console:
+      path: /h2-console
+  datasource:
+    url: jdbc:h2:mem:testdb
