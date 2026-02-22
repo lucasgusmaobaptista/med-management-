@@ -1,6 +1,7 @@
 package me.lucasgusmao.patientservice.service;
 
 import lombok.RequiredArgsConstructor;
+import me.lucasgusmao.patientservice.dto.PatientRequestDTO;
 import me.lucasgusmao.patientservice.dto.PatientResponseDTO;
 import me.lucasgusmao.patientservice.mapper.PatientMapper;
 import me.lucasgusmao.patientservice.model.Patient;
@@ -20,6 +21,11 @@ public class PatientService {
         return patients.stream()
                 .map(PatientMapper::toDTO)
                 .toList();
+    }
+
+    public PatientResponseDTO create(PatientRequestDTO patientRequestDTO) {
+        Patient newPatient = patientRepository.save(PatientMapper.toEntity(patientRequestDTO));
+        return PatientMapper.toDTO(newPatient);
     }
 
 }
