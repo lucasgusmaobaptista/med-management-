@@ -1,7 +1,10 @@
 package me.lucasgusmao.patientservice.mapper;
 
+import me.lucasgusmao.patientservice.dto.PatientRequestDTO;
 import me.lucasgusmao.patientservice.dto.PatientResponseDTO;
 import me.lucasgusmao.patientservice.model.Patient;
+
+import java.time.LocalDate;
 
 public class PatientMapper {
 
@@ -15,13 +18,12 @@ public class PatientMapper {
         return patientResponseDTO;
     }
 
-    public static Patient toEntity(PatientResponseDTO patientResponseDTO) {
+    public static Patient toEntity(PatientRequestDTO patientRequestDTO) {
         Patient patient = new Patient();
-        patient.setId(java.util.UUID.fromString(patientResponseDTO.getId()));
-        patient.setName(patientResponseDTO.getName());
-        patient.setEmail(patientResponseDTO.getEmail());
-        patient.setAddress(patientResponseDTO.getAddress());
-        patient.setDateOfBirth(java.time.LocalDate.parse(patientResponseDTO.getDateOfBirth()));
+        patient.setName(patientRequestDTO.getName());
+        patient.setEmail(patientRequestDTO.getEmail());
+        patient.setAddress(patientRequestDTO.getAddress());
+        patient.setDateOfBirth(LocalDate.parse(patientRequestDTO.getDateOfBirth()));
         return patient;
     }
 }
