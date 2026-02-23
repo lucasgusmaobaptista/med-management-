@@ -18,6 +18,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        log.warn("Erro de validação: {}", ex.getMessage());
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getFieldErrors().forEach(
                 error -> errors.put(error.getField(), error.getDefaultMessage()));
@@ -32,5 +33,13 @@ public class GlobalExceptionHandler {
         Map<String, String> error = new HashMap<>();
         error.put("message", "Email já cadastrado");
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
+
+    @ExceptionHandler(PatientNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handlePatientNotFoundException(PatientNotFoundException ex) {
+        log.warn("Paciente não encontrado: {}", ex.getMessage());
+        Map<String, String> error = new HashMap<>();
+        error.put("message", "Paciente não encontrado");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 }
