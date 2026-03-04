@@ -12,7 +12,7 @@ import java.util.UUID;
 @GrpcService
 public class BillingGrpcService extends BillingServiceGrpc.BillingServiceImplBase {
 
-
+    @Override
     public void createBillingAccount(billing.BillingRequest billingRequest,
                                      StreamObserver<billing.BillingResponse> responseObserver) {
         log.info("createBillingAccount called with request: {}", billingRequest.toString());
@@ -25,5 +25,4 @@ public class BillingGrpcService extends BillingServiceGrpc.BillingServiceImplBas
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
-
 }
