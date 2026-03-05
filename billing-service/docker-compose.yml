@@ -15,4 +15,5 @@ services:
 
 networks:
   internal:
+    name: patient-service_internal
     driver: bridge

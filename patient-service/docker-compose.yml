@@ -19,7 +19,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
   app:
     build:
       context: .
@@ -36,6 +35,8 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      BILLING_SERVICE_ADDRESS: billing-service
+      BILLING_SERVICE_GRPC_PORT: 9001
     networks:
       - internal
 
@@ -44,4 +45,5 @@ volumes:
 
 networks:
   internal:
-    driver: bridge
+    name: patient-service_internal
+    external: true

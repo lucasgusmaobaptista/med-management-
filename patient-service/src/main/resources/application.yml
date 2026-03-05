@@ -21,6 +21,12 @@ spring:
 server:
     port: 4000
 
+billing:
+  service:
+    address: ${BILLING_SERVICE_ADDRESS:localhost}
+    grpc:
+      port: ${BILLING_SERVICE_GRPC_PORT:9001}
+
 logging:
   level:
     root: INFO
